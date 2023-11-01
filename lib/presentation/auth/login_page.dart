@@ -3,10 +3,11 @@ import 'package:flutter_fic9_ecommerce_johan_app/common/components/custom_text_f
 import 'package:flutter_fic9_ecommerce_johan_app/common/components/spaces.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/constants/colors.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/constants/images.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/data/data_sources/auth_local_data_source.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/requests/login_requests_model.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/auth/register_page.dart';
-import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/dashboard_page.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/dashboard/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -81,7 +82,8 @@ class _LoginPageState extends State<LoginPage> {
             listener: (context, state) {
               state.maybeWhen(
                 orElse: () {},
-                success: (data) {
+                success: (data) async {
+                  AuthLocalDataSource().saveAuthData(data);
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(

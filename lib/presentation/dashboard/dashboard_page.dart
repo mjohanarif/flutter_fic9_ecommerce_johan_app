@@ -1,6 +1,8 @@
 import 'package:flutter_fic9_ecommerce_johan_app/common/constants/colors.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/constants/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/account/account_page.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/home_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -13,12 +15,12 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const Center(child: Text('Home Page')),
+    const HomePage(),
     const Center(
       child: Text('Explore Page'),
     ),
     const Center(child: Text('Cart Page')),
-    const Center(child: Text('Account Page')),
+    const AccountPage(),
   ];
 
   void _onItemTapped(int index) {
