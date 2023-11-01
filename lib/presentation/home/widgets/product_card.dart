@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/constants/variables.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/extentions/int_ext.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/responses/product_response_model.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/bloc/cart/cart_bloc.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/widgets/cart_model.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/product_detail/product_detail_page.dart';
 
 import '../../../common/components/spaces.dart';
 import '../../../common/constants/colors.dart';
@@ -14,10 +18,14 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => const ProductDetailPage()),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailPage(
+              product: data,
+            ),
+          ),
+        );
       },
       child: Container(
         decoration: BoxDecoration(
@@ -41,21 +49,46 @@ class ProductCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             const SpaceHeight(14.0),
-            Flexible(
-              child: Text(
-                data.attributes.name,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            const SpaceHeight(4.0),
-            Text(
-              int.parse(data.attributes.price).currencyFormatRp,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            data.attributes.name,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SpaceHeight(4.0),
+                        Text(
+                          int.parse(data.attributes.price).currencyFormatRp,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      context.read<CartBloc>().add(
+                            CartEvent.add(
+                              CartModel(product: data),
+                            ),
+                          );
+                    },
+                    icon: const Icon(Icons.add),
+                  ),
+                ],
               ),
             ),
           ],
