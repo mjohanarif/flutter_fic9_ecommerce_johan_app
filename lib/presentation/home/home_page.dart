@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter_fic9_ecommerce_johan_app/common/components/search_input.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/components/spaces.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/constants/colors.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/constants/images.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/bloc/cart/cart_bloc.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/cart_page.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/bloc/products/products_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/product_model.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/widgets/category_button.dart';
@@ -103,18 +106,47 @@ class _HomePageState extends State<HomePage> {
               const Spacer(),
               Row(
                 children: [
-                  IconButton(
+                  badges.Badge(
+                    badgeContent: BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                          orElse: () {
+                            return const Text(
+                              '0',
+                              style: TextStyle(color: Colors.white),
+                            );
+                          },
+                          loaded: (carts) {
+                            int quantity = 0;
+                            for (var cart in carts) {
+                              quantity += cart.quantity;
+                            }
+                            return Text(
+                              quantity.toString(),
+                              style: const TextStyle(color: Colors.white),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    badgeStyle: const badges.BadgeStyle(
+                      badgeColor: Colors.red,
+                    ),
+                    child: IconButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const SizedBox()),
+                            builder: (context) => const CartPage(),
+                          ),
                         );
                       },
                       icon: Image.asset(
                         Images.iconBuy,
                         height: 24.0,
-                      )),
+                      ),
+                    ),
+                  ),
                   IconButton(
                       onPressed: () {
                         Navigator.push(
@@ -198,7 +230,7 @@ class _HomePageState extends State<HomePage> {
                     child: CircularProgressIndicator(),
                   );
                 },
-                Loaded: (data) {
+                loaded: (data) {
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
