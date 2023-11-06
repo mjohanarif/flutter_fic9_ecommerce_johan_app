@@ -51,5 +51,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         }
       }
     });
+    on<_Started>((event, emit) {
+      emit(const _Loading());
+      emit(const _Loaded([]));
+    });
   }
 }

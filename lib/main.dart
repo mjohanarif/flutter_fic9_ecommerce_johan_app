@@ -4,8 +4,10 @@ import 'package:flutter_fic9_ecommerce_johan_app/presentation/auth/login_page.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/bloc/cart/cart_bloc.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/bloc/order/order_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/dashboard/dashboard_page.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/bloc/products/products_bloc.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/payment/bloc/order_detail/order_detail_bloc.dart';
 
 import 'presentation/auth/bloc/register/register_bloc.dart';
 
@@ -28,6 +30,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CartBloc(),
+        ),
+        BlocProvider(
+          create: (context) => OrderBloc(),
+        ),
+        BlocProvider(
+          create: (context) => OrderDetailBloc(),
         ),
         BlocProvider(
           create: (context) => ProductsBloc()
