@@ -4,10 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/components/row_text.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/components/spaces.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/extentions/int_ext.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/data/data_sources/auth_local_data_source.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/requests/order_request_model.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/bloc/get_cost/get_cost_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/bloc/order/order_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/widgets/cart_item_widget.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/payment/payment_page.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/shipping_address/bloc/get_address/get_address_bloc.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/shipping_address/shipping_address_page.dart';
 
 import '../../common/components/button.dart';
 import '../../common/constants/colors.dart';
@@ -23,6 +27,15 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  int? idAddress;
+  @override
+  void initState() {
+    context.read<GetAddressBloc>().add(
+          const GetAddressEvent.getAddressByUserId(),
+        );
+    super.initState();
+  }
+
   List<Item> items = [];
   int totalPrices = 0;
   @override
@@ -59,6 +72,97 @@ class _CartPageState extends State<CartPage> {
               );
             },
           ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 16),
+            child: Button.filled(
+              width: 60,
+              onPressed: () async {
+                idAddress = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ShippingAddressPage()),
+                );
+                setState(() {});
+              },
+              label: 'Pilih Alamat Pengiriman',
+            ),
+          ),
+          const SpaceHeight(16.0),
+          BlocBuilder<GetAddressBloc, GetAddressState>(
+            builder: (context, state) {
+              return state.maybeWhen(orElse: () {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }, loaded: (response) {
+                if (response.data.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'Alamat belum tersedia',
+                    ),
+                  );
+                }
+                final data = response.data.firstWhere(
+                  (element) => element.id == idAddress,
+                  orElse: () => response.data.first,
+                );
+                context.read<GetCostBloc>().add(
+                      GetCostEvent.getCost(
+                        origin: '2269',
+                        destination: data.attributes.cityId,
+                        courier: 'jne',
+                      ),
+                    );
+                return Container(
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                    border: Border.all(color: ColorName.border),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Alamat Pengiriman',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SpaceHeight(16.0),
+                      Text(
+                        data.attributes.name,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: ColorName.grey,
+                        ),
+                      ),
+                      const SpaceHeight(8.0),
+                      Text(
+                        data.attributes.address,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: ColorName.grey,
+                        ),
+                      ),
+                      const SpaceHeight(8.0),
+                      Text(
+                        data.attributes.phone,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: ColorName.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              });
+            },
+          ),
+          const SpaceHeight(16.0),
           const SpaceHeight(70),
           Container(
             padding: const EdgeInsets.all(16.0),
@@ -103,9 +207,29 @@ class _CartPageState extends State<CartPage> {
                   },
                 ),
                 const SpaceHeight(12.0),
-                RowText(
-                  label: 'Biaya Pengiriman',
-                  value: 150000.currencyFormatRp,
+                BlocBuilder<GetCostBloc, GetCostState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      orElse: () {
+                        return RowText(
+                          label: 'Biaya Pengiriman',
+                          value: 0.currencyFormatRp,
+                        );
+                      },
+                      loading: () {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                      loaded: (response) {
+                        return RowText(
+                          label: 'Biaya Pengiriman',
+                          value: response.rajaongkir.results.first.costs.first
+                              .cost.first.value.currencyFormatRp,
+                        );
+                      },
+                    );
+                  },
                 ),
                 const SpaceHeight(40.0),
                 const Divider(color: ColorName.border),
