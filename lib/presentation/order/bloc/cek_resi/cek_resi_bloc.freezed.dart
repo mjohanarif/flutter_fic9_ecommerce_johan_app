@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'get_cost_bloc.dart';
+part of 'cek_resi_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,61 +15,58 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$GetCostEvent {
+mixin _$CekResiEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String origin, String destination, String courier)
-        getCost,
+    required TResult Function(String courier, String waybill) getCekResi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String origin, String destination, String courier)?
-        getCost,
+    TResult? Function(String courier, String waybill)? getCekResi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String origin, String destination, String courier)?
-        getCost,
+    TResult Function(String courier, String waybill)? getCekResi,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetCost value) getCost,
+    required TResult Function(_GetCekResi value) getCekResi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetCost value)? getCost,
+    TResult? Function(_GetCekResi value)? getCekResi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetCost value)? getCost,
+    TResult Function(_GetCekResi value)? getCekResi,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetCostEventCopyWith<$Res> {
-  factory $GetCostEventCopyWith(
-          GetCostEvent value, $Res Function(GetCostEvent) then) =
-      _$GetCostEventCopyWithImpl<$Res, GetCostEvent>;
+abstract class $CekResiEventCopyWith<$Res> {
+  factory $CekResiEventCopyWith(
+          CekResiEvent value, $Res Function(CekResiEvent) then) =
+      _$CekResiEventCopyWithImpl<$Res, CekResiEvent>;
 }
 
 /// @nodoc
-class _$GetCostEventCopyWithImpl<$Res, $Val extends GetCostEvent>
-    implements $GetCostEventCopyWith<$Res> {
-  _$GetCostEventCopyWithImpl(this._value, this._then);
+class _$CekResiEventCopyWithImpl<$Res, $Val extends CekResiEvent>
+    implements $CekResiEventCopyWith<$Res> {
+  _$CekResiEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -86,7 +83,7 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$GetCostEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$CekResiEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
@@ -100,7 +97,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'GetCostEvent.started()';
+    return 'CekResiEvent.started()';
   }
 
   @override
@@ -116,8 +113,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String origin, String destination, String courier)
-        getCost,
+    required TResult Function(String courier, String waybill) getCekResi,
   }) {
     return started();
   }
@@ -126,8 +122,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String origin, String destination, String courier)?
-        getCost,
+    TResult? Function(String courier, String waybill)? getCekResi,
   }) {
     return started?.call();
   }
@@ -136,8 +131,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String origin, String destination, String courier)?
-        getCost,
+    TResult Function(String courier, String waybill)? getCekResi,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -150,7 +144,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetCost value) getCost,
+    required TResult Function(_GetCekResi value) getCekResi,
   }) {
     return started(this);
   }
@@ -159,7 +153,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetCost value)? getCost,
+    TResult? Function(_GetCekResi value)? getCekResi,
   }) {
     return started?.call(this);
   }
@@ -168,7 +162,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetCost value)? getCost,
+    TResult Function(_GetCekResi value)? getCekResi,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -178,46 +172,41 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements GetCostEvent {
+abstract class _Started implements CekResiEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$GetCostImplCopyWith<$Res> {
-  factory _$$GetCostImplCopyWith(
-          _$GetCostImpl value, $Res Function(_$GetCostImpl) then) =
-      __$$GetCostImplCopyWithImpl<$Res>;
+abstract class _$$GetCekResiImplCopyWith<$Res> {
+  factory _$$GetCekResiImplCopyWith(
+          _$GetCekResiImpl value, $Res Function(_$GetCekResiImpl) then) =
+      __$$GetCekResiImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String origin, String destination, String courier});
+  $Res call({String courier, String waybill});
 }
 
 /// @nodoc
-class __$$GetCostImplCopyWithImpl<$Res>
-    extends _$GetCostEventCopyWithImpl<$Res, _$GetCostImpl>
-    implements _$$GetCostImplCopyWith<$Res> {
-  __$$GetCostImplCopyWithImpl(
-      _$GetCostImpl _value, $Res Function(_$GetCostImpl) _then)
+class __$$GetCekResiImplCopyWithImpl<$Res>
+    extends _$CekResiEventCopyWithImpl<$Res, _$GetCekResiImpl>
+    implements _$$GetCekResiImplCopyWith<$Res> {
+  __$$GetCekResiImplCopyWithImpl(
+      _$GetCekResiImpl _value, $Res Function(_$GetCekResiImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? origin = null,
-    Object? destination = null,
     Object? courier = null,
+    Object? waybill = null,
   }) {
-    return _then(_$GetCostImpl(
-      origin: null == origin
-          ? _value.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as String,
-      destination: null == destination
-          ? _value.destination
-          : destination // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$GetCekResiImpl(
       courier: null == courier
           ? _value.courier
           : courier // ignore: cast_nullable_to_non_nullable
+              as String,
+      waybill: null == waybill
+          ? _value.waybill
+          : waybill // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -225,72 +214,64 @@ class __$$GetCostImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetCostImpl implements _GetCost {
-  const _$GetCostImpl(
-      {required this.origin, required this.destination, required this.courier});
+class _$GetCekResiImpl implements _GetCekResi {
+  const _$GetCekResiImpl({required this.courier, required this.waybill});
 
   @override
-  final String origin;
-  @override
-  final String destination;
-  @override
   final String courier;
+  @override
+  final String waybill;
 
   @override
   String toString() {
-    return 'GetCostEvent.getCost(origin: $origin, destination: $destination, courier: $courier)';
+    return 'CekResiEvent.getCekResi(courier: $courier, waybill: $waybill)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetCostImpl &&
-            (identical(other.origin, origin) || other.origin == origin) &&
-            (identical(other.destination, destination) ||
-                other.destination == destination) &&
-            (identical(other.courier, courier) || other.courier == courier));
+            other is _$GetCekResiImpl &&
+            (identical(other.courier, courier) || other.courier == courier) &&
+            (identical(other.waybill, waybill) || other.waybill == waybill));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, origin, destination, courier);
+  int get hashCode => Object.hash(runtimeType, courier, waybill);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetCostImplCopyWith<_$GetCostImpl> get copyWith =>
-      __$$GetCostImplCopyWithImpl<_$GetCostImpl>(this, _$identity);
+  _$$GetCekResiImplCopyWith<_$GetCekResiImpl> get copyWith =>
+      __$$GetCekResiImplCopyWithImpl<_$GetCekResiImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String origin, String destination, String courier)
-        getCost,
+    required TResult Function(String courier, String waybill) getCekResi,
   }) {
-    return getCost(origin, destination, courier);
+    return getCekResi(courier, waybill);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String origin, String destination, String courier)?
-        getCost,
+    TResult? Function(String courier, String waybill)? getCekResi,
   }) {
-    return getCost?.call(origin, destination, courier);
+    return getCekResi?.call(courier, waybill);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String origin, String destination, String courier)?
-        getCost,
+    TResult Function(String courier, String waybill)? getCekResi,
     required TResult orElse(),
   }) {
-    if (getCost != null) {
-      return getCost(origin, destination, courier);
+    if (getCekResi != null) {
+      return getCekResi(courier, waybill);
     }
     return orElse();
   }
@@ -299,72 +280,70 @@ class _$GetCostImpl implements _GetCost {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetCost value) getCost,
+    required TResult Function(_GetCekResi value) getCekResi,
   }) {
-    return getCost(this);
+    return getCekResi(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetCost value)? getCost,
+    TResult? Function(_GetCekResi value)? getCekResi,
   }) {
-    return getCost?.call(this);
+    return getCekResi?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetCost value)? getCost,
+    TResult Function(_GetCekResi value)? getCekResi,
     required TResult orElse(),
   }) {
-    if (getCost != null) {
-      return getCost(this);
+    if (getCekResi != null) {
+      return getCekResi(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetCost implements GetCostEvent {
-  const factory _GetCost(
-      {required final String origin,
-      required final String destination,
-      required final String courier}) = _$GetCostImpl;
+abstract class _GetCekResi implements CekResiEvent {
+  const factory _GetCekResi(
+      {required final String courier,
+      required final String waybill}) = _$GetCekResiImpl;
 
-  String get origin;
-  String get destination;
   String get courier;
+  String get waybill;
   @JsonKey(ignore: true)
-  _$$GetCostImplCopyWith<_$GetCostImpl> get copyWith =>
+  _$$GetCekResiImplCopyWith<_$GetCekResiImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$GetCostState {
+mixin _$CekResiState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CostResponseModel response) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(WaybillSuccessResponseModel response) loaded,
+    required TResult Function(WaybillFailedResponseModel error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CostResponseModel response)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(WaybillSuccessResponseModel response)? loaded,
+    TResult? Function(WaybillFailedResponseModel error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CostResponseModel response)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(WaybillSuccessResponseModel response)? loaded,
+    TResult Function(WaybillFailedResponseModel error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -396,16 +375,16 @@ mixin _$GetCostState {
 }
 
 /// @nodoc
-abstract class $GetCostStateCopyWith<$Res> {
-  factory $GetCostStateCopyWith(
-          GetCostState value, $Res Function(GetCostState) then) =
-      _$GetCostStateCopyWithImpl<$Res, GetCostState>;
+abstract class $CekResiStateCopyWith<$Res> {
+  factory $CekResiStateCopyWith(
+          CekResiState value, $Res Function(CekResiState) then) =
+      _$CekResiStateCopyWithImpl<$Res, CekResiState>;
 }
 
 /// @nodoc
-class _$GetCostStateCopyWithImpl<$Res, $Val extends GetCostState>
-    implements $GetCostStateCopyWith<$Res> {
-  _$GetCostStateCopyWithImpl(this._value, this._then);
+class _$CekResiStateCopyWithImpl<$Res, $Val extends CekResiState>
+    implements $CekResiStateCopyWith<$Res> {
+  _$CekResiStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -422,7 +401,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$GetCostStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$CekResiStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -436,7 +415,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'GetCostState.initial()';
+    return 'CekResiState.initial()';
   }
 
   @override
@@ -453,8 +432,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CostResponseModel response) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(WaybillSuccessResponseModel response) loaded,
+    required TResult Function(WaybillFailedResponseModel error) error,
   }) {
     return initial();
   }
@@ -464,8 +443,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CostResponseModel response)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(WaybillSuccessResponseModel response)? loaded,
+    TResult? Function(WaybillFailedResponseModel error)? error,
   }) {
     return initial?.call();
   }
@@ -475,8 +454,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CostResponseModel response)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(WaybillSuccessResponseModel response)? loaded,
+    TResult Function(WaybillFailedResponseModel error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -523,7 +502,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements GetCostState {
+abstract class _Initial implements CekResiState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -536,7 +515,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$GetCostStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$CekResiStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -550,7 +529,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'GetCostState.loading()';
+    return 'CekResiState.loading()';
   }
 
   @override
@@ -567,8 +546,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CostResponseModel response) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(WaybillSuccessResponseModel response) loaded,
+    required TResult Function(WaybillFailedResponseModel error) error,
   }) {
     return loading();
   }
@@ -578,8 +557,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CostResponseModel response)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(WaybillSuccessResponseModel response)? loaded,
+    TResult? Function(WaybillFailedResponseModel error)? error,
   }) {
     return loading?.call();
   }
@@ -589,8 +568,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CostResponseModel response)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(WaybillSuccessResponseModel response)? loaded,
+    TResult Function(WaybillFailedResponseModel error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -637,7 +616,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements GetCostState {
+abstract class _Loading implements CekResiState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -647,12 +626,12 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CostResponseModel response});
+  $Res call({WaybillSuccessResponseModel response});
 }
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$GetCostStateCopyWithImpl<$Res, _$LoadedImpl>
+    extends _$CekResiStateCopyWithImpl<$Res, _$LoadedImpl>
     implements _$$LoadedImplCopyWith<$Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
@@ -661,13 +640,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? response = null,
+    Object? response = freezed,
   }) {
     return _then(_$LoadedImpl(
-      null == response
+      freezed == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as CostResponseModel,
+              as WaybillSuccessResponseModel,
     ));
   }
 }
@@ -678,11 +657,11 @@ class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(this.response);
 
   @override
-  final CostResponseModel response;
+  final WaybillSuccessResponseModel response;
 
   @override
   String toString() {
-    return 'GetCostState.loaded(response: $response)';
+    return 'CekResiState.loaded(response: $response)';
   }
 
   @override
@@ -690,12 +669,12 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.response, response) ||
-                other.response == response));
+            const DeepCollectionEquality().equals(other.response, response));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, response);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(response));
 
   @JsonKey(ignore: true)
   @override
@@ -708,8 +687,8 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CostResponseModel response) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(WaybillSuccessResponseModel response) loaded,
+    required TResult Function(WaybillFailedResponseModel error) error,
   }) {
     return loaded(response);
   }
@@ -719,8 +698,8 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CostResponseModel response)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(WaybillSuccessResponseModel response)? loaded,
+    TResult? Function(WaybillFailedResponseModel error)? error,
   }) {
     return loaded?.call(response);
   }
@@ -730,8 +709,8 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CostResponseModel response)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(WaybillSuccessResponseModel response)? loaded,
+    TResult Function(WaybillFailedResponseModel error)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -778,10 +757,11 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements GetCostState {
-  const factory _Loaded(final CostResponseModel response) = _$LoadedImpl;
+abstract class _Loaded implements CekResiState {
+  const factory _Loaded(final WaybillSuccessResponseModel response) =
+      _$LoadedImpl;
 
-  CostResponseModel get response;
+  WaybillSuccessResponseModel get response;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -793,12 +773,12 @@ abstract class _$$ErrorImplCopyWith<$Res> {
           _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
       __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({WaybillFailedResponseModel error});
 }
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$GetCostStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$CekResiStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -807,13 +787,13 @@ class __$$ErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? error = freezed,
   }) {
     return _then(_$ErrorImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as WaybillFailedResponseModel,
     ));
   }
 }
@@ -821,14 +801,14 @@ class __$$ErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.message);
+  const _$ErrorImpl(this.error);
 
   @override
-  final String message;
+  final WaybillFailedResponseModel error;
 
   @override
   String toString() {
-    return 'GetCostState.error(message: $message)';
+    return 'CekResiState.error(error: $error)';
   }
 
   @override
@@ -836,11 +816,12 @@ class _$ErrorImpl implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
-            (identical(other.message, message) || other.message == message));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -853,10 +834,10 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CostResponseModel response) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(WaybillSuccessResponseModel response) loaded,
+    required TResult Function(WaybillFailedResponseModel error) error,
   }) {
-    return error(message);
+    return error(this.error);
   }
 
   @override
@@ -864,10 +845,10 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CostResponseModel response)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(WaybillSuccessResponseModel response)? loaded,
+    TResult? Function(WaybillFailedResponseModel error)? error,
   }) {
-    return error?.call(message);
+    return error?.call(this.error);
   }
 
   @override
@@ -875,12 +856,12 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CostResponseModel response)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(WaybillSuccessResponseModel response)? loaded,
+    TResult Function(WaybillFailedResponseModel error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(message);
+      return error(this.error);
     }
     return orElse();
   }
@@ -923,10 +904,10 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements GetCostState {
-  const factory _Error(final String message) = _$ErrorImpl;
+abstract class _Error implements CekResiState {
+  const factory _Error(final WaybillFailedResponseModel error) = _$ErrorImpl;
 
-  String get message;
+  WaybillFailedResponseModel get error;
   @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;

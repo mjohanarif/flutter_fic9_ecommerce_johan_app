@@ -4,6 +4,7 @@ import 'package:flutter_fic9_ecommerce_johan_app/data/data_sources/auth_local_da
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/requests/add_address_request.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/requests/order_request_model.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/responses/add_address_response_model.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/data/models/responses/buyer_order_response.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/responses/get_address_response_model.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/responses/order_detail_response_model.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/responses/order_response_model.dart';
@@ -49,6 +50,30 @@ class OrderRemoteDataSource {
     if (response.statusCode == 200) {
       return Right(
         OrderDetailResponseModel.fromJson(response.body),
+      );
+    } else {
+      return Left(
+        'Status code:${response.statusCode}, ${response.reasonPhrase}',
+      );
+    }
+  }
+
+  Future<Either<String, BuyerOrderResponseModel>> getOrderByBuyerId() async {
+    final token = await AuthLocalDataSource().getToken();
+    final userId = (await AuthLocalDataSource().getUser()).id;
+
+    final response = await http.get(
+      Uri.parse(
+          '${Variables.baseUrl}/api/orders?filters[buyerId][\$eq]=$userId'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return Right(
+        BuyerOrderResponseModel.fromRawJson(response.body),
       );
     } else {
       return Left(

@@ -205,25 +205,28 @@ class _AddAddressPageState extends State<AddAddressPage> {
               orElse: () {
                 return Button.filled(
                   onPressed: () async {
-                    final userId = (await AuthLocalDataSource().getUser()).id;
-                    context.read<AddAddressBloc>().add(
-                          AddAddressEvent.addAddress(
-                            request: AddAddressRequestModel(
-                              data: AddAddress(
-                                name: nameController.text,
-                                address:
-                                    '${addressController.text}, ${selectedSubdistrict?.subdistrictName}, ${selectedCity?.cityName}, ${selectedProvince?.province}, ${zipCodeController.text}',
-                                phone: phoneNumberController.text,
-                                provId: selectedProvince?.provinceId ?? '',
-                                cityId: selectedCity?.cityId ?? '',
-                                subdistrictId:
-                                    selectedSubdistrict?.subdistrictId ?? '',
-                                codePos: zipCodeController.text,
-                                userId: userId.toString(),
-                                isDefault: isDefault,
+                    await AuthLocalDataSource().getUser().then(
+                          (value) => context.read<AddAddressBloc>().add(
+                                AddAddressEvent.addAddress(
+                                  request: AddAddressRequestModel(
+                                    data: AddAddress(
+                                      name: nameController.text,
+                                      address:
+                                          '${addressController.text}, ${selectedSubdistrict?.subdistrictName}, ${selectedCity?.cityName}, ${selectedProvince?.province}, ${zipCodeController.text}',
+                                      phone: phoneNumberController.text,
+                                      provId:
+                                          selectedProvince?.provinceId ?? '',
+                                      cityId: selectedCity?.cityId ?? '',
+                                      subdistrictId:
+                                          selectedSubdistrict?.subdistrictId ??
+                                              '',
+                                      codePos: zipCodeController.text,
+                                      userId: value.id.toString(),
+                                      isDefault: isDefault,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
                         );
                   },
                   label: 'Tambah Alamat',
