@@ -8,7 +8,6 @@ import 'package:flutter_fic9_ecommerce_johan_app/common/constants/images.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/bloc/cart/cart_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/cart_page.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/bloc/products/products_bloc.dart';
-import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/product_model.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/widgets/category_button.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/widgets/image_slider.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/widgets/product_card.dart';
@@ -22,28 +21,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late TextEditingController searchController;
-  final List<ProductModel> products = [
-    const ProductModel(
-      images: [Images.product1],
-      name: 'Tas Kekinian',
-      price: 200000,
-    ),
-    const ProductModel(
-      images: [Images.product2],
-      name: 'Earphone',
-      price: 199999,
-    ),
-    const ProductModel(
-      images: [Images.product3],
-      name: 'Sepatu Pria',
-      price: 700000,
-    ),
-    const ProductModel(
-      images: [Images.product4],
-      name: 'Earphone',
-      price: 670000,
-    ),
-  ];
 
   @override
   void initState() {

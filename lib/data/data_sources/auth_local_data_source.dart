@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_fic9_ecommerce_johan_app/data/models/responses/auth_response_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,9 +7,7 @@ class AuthLocalDataSource {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(
       'auth',
-      jsonEncode(
-        model.toJson(),
-      ),
+      model.toJson(),
     );
   }
 
