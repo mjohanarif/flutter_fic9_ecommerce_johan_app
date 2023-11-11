@@ -29,6 +29,7 @@ class ProductCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
+          color: Colors.white70,
           borderRadius: const BorderRadius.all(Radius.circular(6.0)),
           boxShadow: [
             BoxShadow(
@@ -50,45 +51,48 @@ class ProductCard extends StatelessWidget {
             ),
             const SpaceHeight(14.0),
             Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            data.attributes.name,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              data.attributes.name,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SpaceHeight(4.0),
+                          Text(
+                            int.parse(data.attributes.price).currencyFormatRp,
                             style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        const SpaceHeight(4.0),
-                        Text(
-                          int.parse(data.attributes.price).currencyFormatRp,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      context.read<CartBloc>().add(
-                            CartEvent.add(
-                              CartModel(product: data),
-                            ),
-                          );
-                    },
-                    icon: const Icon(Icons.add),
-                  ),
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        context.read<CartBloc>().add(
+                              CartEvent.add(
+                                CartModel(product: data),
+                              ),
+                            );
+                      },
+                      child: const Icon(Icons.add),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

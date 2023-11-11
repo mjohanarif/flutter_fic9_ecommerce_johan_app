@@ -90,7 +90,11 @@ class _AccountPageState extends State<AccountPage> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.logout),
+            leading: const Icon(
+              Icons.logout,
+              color: ColorName.primary,
+              size: 24,
+            ),
             title: const Text(
               'Logout',
               style: TextStyle(
