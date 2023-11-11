@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/common/components/button.dart';
 
 import 'package:flutter_fic9_ecommerce_johan_app/common/components/row_text.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/components/spaces.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_fic9_ecommerce_johan_app/data/models/responses/buyer_ord
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/order/models/order_product_model.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/order/widgets/order_product_tile.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/order/widgets/order_status.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/payment/payment_page.dart';
 
 class OrderDetailPage extends StatefulWidget {
   final BuyerOrder data;
@@ -45,6 +47,28 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       appBar: AppBar(
         title: const Text('Detail Pesanan'),
       ),
+      bottomSheet: widget.data.attributes.invoiceUrl != '-' &&
+              (widget.data.attributes.status.contains('waiting'))
+          ? Container(
+              padding: const EdgeInsets.all(16),
+              color: Colors.white,
+              child: Button.filled(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return PaymentPage(
+                          invoiceUrl: widget.data.attributes.invoiceUrl,
+                        );
+                      },
+                    ),
+                  );
+                },
+                label: 'Pay Now',
+              ),
+            )
+          : const SizedBox(),
       body: ListView(
         padding: const EdgeInsets.all(
           16,
@@ -86,9 +110,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
             child: Column(
               children: [
                 RowText(
-                  label:
+                  label: 'Waktu Pengiriman',
+                  value:
                       widget.data.attributes.createdAt.toFormattedDateWithDay(),
-                  value: DateTime.now().toFormattedDateWithDay(),
                 ),
                 const SpaceHeight(12.0),
                 RowText(
