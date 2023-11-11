@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -9,11 +8,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentPage extends StatefulWidget {
   final String invoiceUrl;
-  final String id;
   const PaymentPage({
     Key? key,
     required this.invoiceUrl,
-    required this.id,
   }) : super(key: key);
 
   @override
@@ -21,19 +18,28 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
+  double progress = 0;
   WebViewController? _controller;
-  Timer? _timer;
+  bool isShowProgress = true;
+  // Timer? _timer;
   @override
   void initState() {
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(
-        Colors.black,
+        const Color(0x00000000),
       )
       ..setNavigationDelegate(
         NavigationDelegate(
           onUrlChange: (change) {},
-          onProgress: (int progress) async {},
+          onProgress: (int progress) async {
+            setState(() {
+              this.progress = progress / 100;
+              if (progress == 100) {
+                isShowProgress = false;
+              }
+            });
+          },
           onPageStarted: (String invoiceUrl) {},
           onPageFinished: (String invoiceUrl) {},
           onWebResourceError: (WebResourceError error) {
@@ -60,27 +66,45 @@ class _PaymentPageState extends State<PaymentPage> {
       )
       ..loadRequest(Uri.parse(widget.invoiceUrl));
 
-    const durSec = Duration(seconds: 5);
-    _timer = Timer.periodic(durSec, (timer) {
-      // context.read<OrderDetailBloc>().add(
-      //       OrderDetailEvent.getOrderDetail(
-      //         widget.id,
-      //       ),
-      //     );
-    });
+    // const durSec = Duration(seconds: 5);
+    // _timer = Timer.periodic(durSec, (timer) {
+    // context.read<OrderDetailBloc>().add(
+    //       OrderDetailEvent.getOrderDetail(
+    //         widget.id,
+    //       ),
+    //     );
+    // });
     super.initState();
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    // _timer?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WebViewWidget(controller: _controller!),
+      appBar: AppBar(
+        title: const Text(
+          'Payment Page',
+        ),
+      ),
+      body: Stack(
+        children: [
+          WebViewWidget(controller: _controller!),
+          Visibility(
+            visible: isShowProgress,
+            child: SizedBox(
+              height: 3,
+              child: LinearProgressIndicator(
+                value: progress,
+              ),
+            ),
+          ),
+        ],
+      ),
       // BlocListener<OrderDetailBloc, OrderDetailState>(
       //   listener: (context, state) {
       //     state.maybeWhen(

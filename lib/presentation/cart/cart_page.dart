@@ -359,7 +359,6 @@ class _CartPageState extends State<CartPage> {
                                       builder: (context) {
                                         return PaymentPage(
                                           invoiceUrl: response.invoiceUrl,
-                                          id: response.externalId,
                                         );
                                       },
                                     ),
