@@ -33,12 +33,14 @@ class _PaymentPageState extends State<PaymentPage> {
         NavigationDelegate(
           onUrlChange: (change) {},
           onProgress: (int progress) async {
-            setState(() {
-              this.progress = progress / 100;
-              if (progress == 100) {
-                isShowProgress = false;
-              }
-            });
+            if (mounted) {
+              setState(() {
+                this.progress = progress / 100;
+                if (progress == 100) {
+                  isShowProgress = false;
+                }
+              });
+            }
           },
           onPageStarted: (String invoiceUrl) {},
           onPageFinished: (String invoiceUrl) {},
