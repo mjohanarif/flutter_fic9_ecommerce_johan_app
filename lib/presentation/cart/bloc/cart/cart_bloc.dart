@@ -32,7 +32,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         );
       }
     });
-    on<_Remove>((event, emit) {
+    on<_RemoveItem>((event, emit) {
       final currentState = state as _Loaded;
 
       final index = currentState.carts
@@ -49,6 +49,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           emit(const _Loading());
           emit(_Loaded(currentState.carts));
         }
+      }
+    });
+    on<_RemoveProduct>((event, emit) {
+      final currentState = state as _Loaded;
+
+      final index = currentState.carts
+          .indexWhere((element) => element.product.id == event.data.product.id);
+      if (index >= 0) {
+        List<CartModel> res = [];
+        res.addAll(currentState.carts);
+        res.removeAt(index);
+        emit(const _Loading());
+        emit(_Loaded(res));
       }
     });
     on<_Started>((event, emit) {

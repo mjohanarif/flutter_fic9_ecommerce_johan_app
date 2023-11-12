@@ -58,7 +58,11 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                     ),
                     const Spacer(),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        context.read<CartBloc>().add(
+                              CartEvent.removeProduct(widget.data),
+                            );
+                      },
                       child: const ImageIcon(
                         AssetImage(
                           Images.iconTrash,
@@ -94,7 +98,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                             onTap: () {
                               if (widget.data.quantity > 0) {
                                 context.read<CartBloc>().add(
-                                      CartEvent.remove(widget.data),
+                                      CartEvent.removeItem(widget.data),
                                     );
                               }
                             },

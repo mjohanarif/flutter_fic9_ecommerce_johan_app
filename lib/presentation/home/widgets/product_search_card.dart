@@ -95,7 +95,7 @@ class ProductSearchCard extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             context.read<CartBloc>().add(
-                                  CartEvent.remove(
+                                  CartEvent.removeItem(
                                     CartModel(product: data),
                                   ),
                                 );
