@@ -1,16 +1,16 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:badges/badges.dart' as badges;
+
 import 'package:flutter_fic9_ecommerce_johan_app/common/components/search_input.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/components/spaces.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/constants/colors.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/common/constants/images.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/bloc/cart/cart_bloc.dart';
 import 'package:flutter_fic9_ecommerce_johan_app/presentation/cart/cart_page.dart';
-import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/bloc/products/products_bloc.dart';
-import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/widgets/category_button.dart';
-import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/widgets/image_slider.dart';
-import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/widgets/product_card.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/bloc/search_product/search_product_bloc.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/widgets/product_list_section.dart';
+import 'package:flutter_fic9_ecommerce_johan_app/presentation/home/widgets/product_search_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -83,55 +83,75 @@ class _HomePageState extends State<HomePage> {
               const Spacer(),
               Row(
                 children: [
-                  badges.Badge(
-                    badgeContent: BlocBuilder<CartBloc, CartState>(
-                      builder: (context, state) {
-                        return state.maybeWhen(
-                          orElse: () {
-                            return const Text(
-                              '0',
-                              style: TextStyle(color: Colors.white),
+                  BlocBuilder<CartBloc, CartState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () {
+                          return IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const CartPage(),
+                                ),
+                              );
+                            },
+                            icon: Image.asset(
+                              Images.iconBuy,
+                              height: 24.0,
+                            ),
+                          );
+                        },
+                        loaded: (carts) {
+                          int quantity = 0;
+                          for (var cart in carts) {
+                            quantity += cart.quantity;
+                          }
+                          if (quantity == 0) {
+                            return IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const CartPage(),
+                                  ),
+                                );
+                              },
+                              icon: Image.asset(
+                                Images.iconBuy,
+                                height: 24.0,
+                              ),
                             );
-                          },
-                          loaded: (carts) {
-                            int quantity = 0;
-                            for (var cart in carts) {
-                              quantity += cart.quantity;
-                            }
-                            return Text(
+                          }
+                          return badges.Badge(
+                            badgeContent: Text(
                               quantity.toString(),
                               style: const TextStyle(color: Colors.white),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    badgeStyle: const badges.BadgeStyle(
-                      badgeColor: Colors.red,
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CartPage(),
-                          ),
-                        );
-                      },
-                      icon: Image.asset(
-                        Images.iconBuy,
-                        height: 24.0,
-                      ),
-                    ),
+                            ),
+                            badgeStyle: const badges.BadgeStyle(
+                              badgeColor: Colors.red,
+                            ),
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const CartPage(),
+                                  ),
+                                );
+                              },
+                              icon: Image.asset(
+                                Images.iconBuy,
+                                height: 24.0,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                   IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SizedBox()),
-                        );
-                      },
+                      onPressed: () {},
                       icon: Image.asset(
                         Images.iconNotificationHome,
                         height: 24.0,
@@ -143,89 +163,21 @@ class _HomePageState extends State<HomePage> {
           const SpaceHeight(16.0),
           SearchInput(
             controller: searchController,
-            onChanged: (value) {},
-          ),
-          const SpaceHeight(16.0),
-          ImageSlider(items: images),
-          const SpaceHeight(12.0),
-          const Text(
-            "Kategori",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: ColorName.primary,
-            ),
-          ),
-          const SpaceHeight(12.0),
-          Row(
-            children: [
-              Flexible(
-                child: CategoryButton(
-                  imagePath: Images.fashion1,
-                  label: 'Pakaian',
-                  onPressed: () {},
-                ),
-              ),
-              Flexible(
-                child: CategoryButton(
-                  imagePath: Images.fashion2,
-                  label: 'Pakaian',
-                  onPressed: () {},
-                ),
-              ),
-              Flexible(
-                child: CategoryButton(
-                  imagePath: Images.fashion3,
-                  label: 'Pakaian',
-                  onPressed: () {},
-                ),
-              ),
-              Flexible(
-                child: CategoryButton(
-                  imagePath: Images.more,
-                  label: 'Pakaian',
-                  onPressed: () {},
-                ),
-              ),
-            ],
-          ),
-          const SpaceHeight(16.0),
-          const Text(
-            "Produk",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: ColorName.primary,
-            ),
-          ),
-          const SpaceHeight(8.0),
-          BlocBuilder<ProductsBloc, ProductsState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                orElse: () {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
-                loaded: (data) {
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10.0,
-                      mainAxisSpacing: 55.0,
-                    ),
-                    itemCount: data.data.length,
-                    itemBuilder: (context, index) => ProductCard(
-                      data: data.data[index],
-                    ),
-                  );
-                },
-              );
+            onChanged: (value) {
+              if (value.isNotEmpty) {
+                context.read<SearchProductBloc>().add(
+                      SearchProductEvent.searchProduct(value),
+                    );
+              }
+              setState(() {});
             },
           ),
+          const SpaceHeight(16.0),
+          if (searchController.text.isEmpty) ...[
+            ProductListSection(images: images),
+          ] else ...[
+            const ProductSearchSection(),
+          ]
         ],
       ),
     );

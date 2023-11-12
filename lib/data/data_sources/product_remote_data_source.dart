@@ -14,4 +14,21 @@ class ProductRemoteDataSource {
       return const Left('Server Error');
     }
   }
+
+  Future<Either<String, ProductResponseModel>> getSearchProduct(
+      String query) async {
+    final response = await http.get(
+      Uri.parse(
+        '${Variables.baseUrl}/api/products?populate=*&filters[name][\$contains]=$query',
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      return Right(
+        ProductResponseModel.fromRawJson(response.body),
+      );
+    } else {
+      return const Left('Server Error');
+    }
+  }
 }

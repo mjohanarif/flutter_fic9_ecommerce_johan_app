@@ -4,12 +4,12 @@ import '../constants/colors.dart';
 
 class SearchInput extends StatelessWidget {
   final TextEditingController controller;
-  final Function(String value)? onChanged;
+  final Function(String value) onChanged;
 
   const SearchInput({
     super.key,
     required this.controller,
-    this.onChanged,
+    required this.onChanged,
   });
 
   @override
@@ -36,6 +36,16 @@ class SearchInput extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
             borderSide: const BorderSide(color: Colors.grey),
+          ),
+          suffix: GestureDetector(
+            onTap: () {
+              controller.text = '';
+              onChanged('');
+            },
+            child: const Icon(
+              Icons.close,
+              color: ColorName.primary,
+            ),
           ),
         ),
       ),
